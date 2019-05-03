@@ -53,13 +53,13 @@ function suite(polling) {
 
   test('change', function(t) {
     t.plan(2)
+    var f = createFile()
     w.on('change', function(file, stat) {
       t.equal(file, f)
       t.ok(stat.mtime > 0, 'mtime > 0')
     })
     w.on('error', function(err) { t.fail(err) })
 
-    var f = createFile()
     w.add(f)
 
     touch(f)
